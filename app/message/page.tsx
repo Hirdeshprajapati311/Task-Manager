@@ -66,7 +66,7 @@ const Message = () => {
 export default Message;
 
 
-export const Search = () => {
+const Search = () => {
   
   return (
     <div className='flex flex-row items-center w-full mb-2'>
