@@ -22,7 +22,7 @@ const Notification = () => {
 export default Notification;
 
 
-export const Toggle = ({title}:{title:string}) => {
+ const Toggle = ({title}:{title:string}) => {
   
   const [enabled, setEnabled] = useState(false);
 
