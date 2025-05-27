@@ -1,95 +1,117 @@
+"use client"
+import { ActivityGraph, CircularProgress, Header, MentorCard, TodaysTask, UpcomingTaskCard, WeekTracker } from "@/components";
+import { useScrollStore } from "@/context";
+import { mentorData, upcomingTask } from "@/db/data";
 import Image from "next/image";
-import styles from "./page.module.css";
+import { useRef } from "react";
+import { FaAngleDown } from "react-icons/fa6";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
+
+
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const scrollRef = useRef<HTMLDivElement | null>(null)
+  const upcomingScrollRef = useRef<HTMLDivElement | null>(null);
+  
+  const { handlePrev, handleNext } = useScrollStore();
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  const TOTAL_TASK: number = 100
+  const progress:number = 45
+
+  return (
+    <main className="p-0 m-0 bg-primary/200 flex-col  flex md:flex-row h-[100dvh] w-full overflow-hidden">
+
+      <div className="flex-1 overflow-y-auto md:overflow-hidden flex flex-col md:flex-row">
+        {/* Mid Screen */}
+        <div className=" w-full md:overflow-y-auto md:scrollbar-hide md:w-[60%] p-1 md:p-6 ">
+          <div className="px-8 ">
+            <Header header_Text="Hi" text="Let's finish your task today" showName backgroundColor="bg-primary/200" />
+          </div>
+          
+          <div className='w-full px-8'>
+            {/* Card and Graph */}
+            <div className='flex md:flex-row gap-6 md:gap-8 flex-col py-6 justify-around items-stretch'>
+
+              {/* Card */}
+              <div className=' bg-secondary/500  py-6 px-6  flex md:flex-col justify-around md:justify-center md:items-center flex-row rounded-xl'>
+                <div className='text-white flex flex-col gap-4'>
+                  <span>Running Task</span>
+                  <span className='text-2xl font-semibold'>{TOTAL_TASK-progress}</span>
+                </div>
+
+                <div className='flex flex-row gap-2 items-center'>
+                  <CircularProgress progress={45} />
+                  <div className='flex font-semibold text-white flex-col'>
+                    <span>{TOTAL_TASK}</span>
+                    <span>Task</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Graph */}
+              <div className='flex flex-col flex-1 bg-primary rounded-xl min-w-52 overflow-hidden'>
+                
+                <div className='flex justify-center items-center'>
+                  <ActivityGraph/>
+                </div>
+              </div>
+            </div>
+
+            {/* Monthly Mentors */}
+            <div className='flex flex-col w-full mr-4'>
+              <div className='flex flex-row justify-between mb-4'>
+                <div className="font-bold md:text-base text-sm">Monthly Mentors</div>
+                <div className="flex flex-row gap-2 text-2xl">
+                  <button className="hover:bg-gray-300 flex justify-center items-center h-8 w-8 rounded-full" onClick={()=>handlePrev(scrollRef)}><MdKeyboardArrowLeft className="text-gray-400" /></button>
+                  <button className="hover:bg-gray-300 flex justify-center items-center h-8 w-8 rounded-full" onClick={()=>handleNext(scrollRef)}>
+                    <MdKeyboardArrowRight />
+                  </button>
+                </div>
+              </div>
+              <div ref={scrollRef} className="flex flex-row overflow-x-auto scrollbar-hide gap-12">
+                {mentorData.map((mentor) => (<MentorCard key={mentor.id} role={mentor.role} rating={mentor.rating} reviews={mentor.reviews} name={mentor.name} tasks={mentor.tasks} />))}
+              </div>
+            </div>
+
+            {/**Upcoming Task */}
+            <div className='flex flex-col w-full mr-4'>
+              <div className='flex flex-row justify-between mb-4'>
+                <div className="font-bold md:text-base text-sm">Upcomming Task</div>
+                <div className="flex flex-row gap-2 text-2xl">
+                  <button className="hover:bg-gray-300 flex justify-center items-center h-8 w-8 rounded-full" onClick={()=>handlePrev(upcomingScrollRef)}><MdKeyboardArrowLeft className="text-gray-400" /></button>
+                  <button className="hover:bg-gray-300 flex justify-center items-center h-8 w-8 rounded-full" onClick={()=>handleNext(upcomingScrollRef)}>
+                    <MdKeyboardArrowRight />
+                  </button>
+                </div>
+              </div>
+              <div ref={upcomingScrollRef} className="flex flex-row overflow-x-auto scrollbar-hide gap-12">
+                {upcomingTask.map((task)=>(<UpcomingTaskCard key={task.id} src={task.src} taskName={task.taskName} task={task.task} progress={task.progress} daysLeft={task.daysLeft} id={task.id} />))}
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        {/* Right Section */}
+        <div className=" w-full md:w-[40%] md:overflow-y-auto md:scrollbar-hide  md:h-screen bg-primary p-4 mt-4 md:p-6 flex flex-col gap-8 items-center">
+          <WeekTracker />
+          <TodaysTask src="/image.png"/>
+
+        </div>
+      </div>
+    </main>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
