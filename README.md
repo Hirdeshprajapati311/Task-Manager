@@ -12,13 +12,11 @@ A fully responsive **Task Manager dashboard** built with:
 
 > ⚠️ **Note:** This is a frontend-only project; backend integration is planned.
 >  
-> 🚀 **Live Site (might misbehave):** [task-manager.vercel.app]([https://task-manager.vercel.app](https://task-manager-ctt5-abmzpmql6-hirdeshprajapati311s-projects.vercel.app/task))
+> 🚀 **Live Site (might misbehave):** [task-manager.vercel.app](https://task-manager-ctt5-abmzpmql6-hirdeshprajapati311s-projects.vercel.app/task)
 
 ---
 
 ## 📸 Screenshots
-
-> Add real screenshots to `/screenshots/` and link them below.
 
 ### 🖥️ Dashboard View  
 ![image](https://github.com/user-attachments/assets/cf8f976e-8bb2-46c1-90cb-b0eeac3c5c9c)
