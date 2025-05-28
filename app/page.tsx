@@ -2,9 +2,7 @@
 import { ActivityGraph, CircularProgress, Header, MentorCard, TodaysTask, UpcomingTaskCard, WeekTracker } from "@/components";
 import { useScrollStore } from "@/context";
 import { mentorData, upcomingTask } from "@/db/data";
-import Image from "next/image";
 import { useRef } from "react";
-import { FaAngleDown } from "react-icons/fa6";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
@@ -35,14 +33,14 @@ export default function Home() {
 
               {/* Card */}
               <div className=' bg-secondary/500  py-6 px-6  flex md:flex-col justify-around md:justify-center md:items-center flex-row rounded-xl'>
-                <div className='text-white flex flex-col gap-4'>
-                  <span>Running Task</span>
-                  <span className='text-2xl font-semibold'>{TOTAL_TASK-progress}</span>
+                <div className='text-white flex flex-col md:gap-2 lg:gap-4'>
+                  <span className="text-xs md:text-sm lg:text-base">Running Task</span>
+                  <span className='lg:text-2xl font-semibold text-lg md:text-xl'>{TOTAL_TASK-progress}</span>
                 </div>
 
-                <div className='flex flex-row gap-2 items-center'>
+                <div className='flex flex-row gap-2 items-center text-xs md:text-sm lg:text-base'>
                   <CircularProgress progress={45} />
-                  <div className='flex font-semibold text-white flex-col'>
+                  <div className='flex font-semibold text-white flex-col '>
                     <span>{TOTAL_TASK}</span>
                     <span>Task</span>
                   </div>
@@ -52,7 +50,7 @@ export default function Home() {
               {/* Graph */}
               <div className='flex flex-col flex-1 bg-primary rounded-xl min-w-52 overflow-hidden'>
                 
-                <div className='flex justify-center items-center'>
+                <div className='flex justify-center items-center '>
                   <ActivityGraph/>
                 </div>
               </div>
@@ -86,7 +84,11 @@ export default function Home() {
                 </div>
               </div>
               <div ref={upcomingScrollRef} className="flex flex-row overflow-x-auto scrollbar-hide gap-12">
-                {upcomingTask.map((task)=>(<UpcomingTaskCard key={task.id} src={task.src} taskName={task.taskName} task={task.task} progress={task.progress} daysLeft={task.daysLeft} id={task.id} />))}
+                {upcomingTask.map((task) => {
+                  const filename = task.src.split('/').pop();
+                  const updatedSrc = `/images/${filename}`
+                  return(<UpcomingTaskCard key={task.id} src={updatedSrc} taskName={task.taskName} task={task.task} progress={task.progress} daysLeft={task.daysLeft} id={task.id} />)
+                })}
               </div>
             </div>
           </div>
@@ -95,7 +97,7 @@ export default function Home() {
         {/* Right Section */}
         <div className=" w-full md:w-[40%] md:overflow-y-auto md:scrollbar-hide  md:h-screen bg-primary p-4 mt-4 md:p-6 flex flex-col gap-8 items-center">
           <WeekTracker />
-          <TodaysTask src="/image.png"/>
+          <TodaysTask src="/images/image.png"/>
 
         </div>
       </div>

@@ -18,7 +18,7 @@ const Header = ({ backgroundColor = "", header_Text, text, showComponent, placeh
   const toggleSidebar = useSidebarStore((state) => state.toggleSidebar)
   const { name, photo,comma } = useProfileStore()
   const username = name || 'User'
-  const profilePic = photo || '/avatar.jpg' 
+  const profilePic = photo || '/images/avatar.jpg' 
 
   return (
 

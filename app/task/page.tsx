@@ -41,7 +41,12 @@ const Task = () => {
           </div>
         </div>
         <div ref={upcomingScrollRef1} className="flex flex-row overflow-x-auto scrollbar-hide gap-12">
-          {[...upcomingTask].sort(()=>Math.random()-0.5).map((task)=>(<UpcomingTaskCard id={task.id} key={task.id} task={task.task} taskName={task.taskName} progress={task.progress} daysLeft={task.daysLeft} src={task.src} />))}
+          {[...upcomingTask].sort(() => Math.random() - 0.5).map((task) => {
+            const filename = task.src.split('/').pop();
+            const updatedSrc = `/images/${filename}`;
+            return (<UpcomingTaskCard id={task.id} key={task.id} task={task.task} taskName={task.taskName} progress={task.progress} daysLeft={task.daysLeft} src={updatedSrc} />);
+          })
+          }
 
         </div>
       </div>

@@ -28,7 +28,7 @@ const Sidebar = () => {
         {/* Logo */}
         <div className='flex justify-center mt-2 mb-8 w-full md:w-[180px]'>
           <Link href='/'>
-            <Image src='/logo.png' alt='logo' width={180} height={180} className='w-full h-auto' />
+            <Image src='/logo.png' alt='/images/Logo.png' width={180} height={180} className='w-full h-auto' />
           </Link>
 
           
@@ -71,14 +71,14 @@ const HelpCard = () => (
       </div>
 
       {/* Card Content */}
-      <div className='w-full flex flex-col items-center mt-6 md:mt-8 rounded-md bg-gray-900 h-full'>
-        <div className='text-white pt-8 pb-2 md:pb-4 text-sm md:text-base'>
+      <div className='w-full flex flex-col items-center mt-4 md:mt-6 lg:mt-8 rounded-md bg-gray-900 h-full'>
+        <div className='text-white pt-8 pb-2 md:pb-3 lg:pb-4  text-xs md:text-sm  lg:text-base'>
           Help Center
         </div>
-        <p className='text-white mb-3 md:mb-4 px-2 md:px-4 text-xs md:text-sm text-center'>
+        <p className='text-white mb-2 md:mb-3 lg:mb-4 px-1 md-px-2 lg:px-4 md:text-xs lg:text-sm text-[10px] text-center'>
           Having trouble in learning? Please contact us for more questions
         </p>
-        <Link href="/help" className='rounded-md bg-white py-2 px-4 md:py-2 md:px-2 text-xs md:text-sm mb-2  md:mb-6'>
+        <Link href="/help" className='rounded-md bg-white py-2 px-4 md:py-2 md:px-1 lg:px-2 text-[10px] md:text-xs lg:text-sm mb-2  md:mb-6'>
           Go To Help Center
         
         </Link>

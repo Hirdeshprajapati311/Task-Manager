@@ -15,7 +15,7 @@ const data = [
 const ActivityGraph = () => {
   return (
     <div className='flex flex-col justify-center items-center flex-1 bg-primary rounded-xl min-w-48 overflow-hidden'>
-      <div className='flex w-full md:text-base text-sm px-8 py-4 flex-row justify-between'>
+      <div className='flex w-full px-8 py-4 flex-row justify-between text-xs md:text-sm lg:text-base'>
         <span>Activity</span>
         <button> This Week <span>▼</span></button>
       </div>

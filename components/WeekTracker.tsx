@@ -19,7 +19,7 @@ const WeekTracker = () => {
   
 
   return (
-    <div className="bg-secondary min-w-[200px] rounded-xl shadow-md p-4 mx-auto w-fit">
+    <div className="bg-secondary min-w-[200px] md:min-w-[240px] lg:min-w-[280px] rounded-xl shadow-md p-4 mx-auto w-fit">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
@@ -33,13 +33,13 @@ const WeekTracker = () => {
         {weekDates.map((date, idx) => {
           const isToday = isSameDay(date, new Date());
           return (
-            <div key={idx} className= {`p-1 ${isToday?"bg-black rounded-full justify-center items-center text-white":""}flex flex-col items-center`}>
+            <div key={idx} className={`p-1 text-[10px] md:text-xs lg:text-sm ${isToday?"bg-black rounded-full  justify-center items-center text-white":""}flex flex-col items-center`}>
               <span className={`text-sm flex justify-center mb-2  ${isToday ? "text-white" :"text-gray-500"}`}>
                 {
                   format(date,"E").charAt(0)
                 }
               </span>
-              <div className={`w-6 sm:w-8 md:w-10 h-6 sm:h-8 md:h-10  flex items-center justify-center rounded-full ${isToday ? "bg-primary/500 text-white" : "bg-gray-100 text-gray-800"}`}>
+              <div className={`w-4 md:w-6 h-4 lg:w-8 md:h-6 lg:h-8  text-[10px] md:text-xs lg:text-sm flex items-center justify-center rounded-full ${isToday ? "bg-primary/500 text-white" : "bg-gray-100 text-gray-800"}`}>
                 {
                   format(date,"d")
                 }

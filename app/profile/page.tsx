@@ -37,7 +37,7 @@ const Profile = () => {
         name: tempName,
         gender: tempGender,
         phone: tempPhone,
-        photo:tempProfilePhoto || '/avatar.jpg'
+        photo:tempProfilePhoto || '/images/avatar.jpg'
       })
       console.log("saving changes..",{name,gender,phone})
     }
@@ -55,7 +55,7 @@ const Profile = () => {
           <div className='flex mt-4 flex-col gap-2'>
 
             <div className='flex flex-col items-center mb-4'>
-              <Image src={tempProfilePhoto || '/avatar.jpg'} alt="Profile photo" height={56} width={28} className='w-24 h-24 rounded-full object-cover border-white shadow-md' />
+              <Image src={tempProfilePhoto || '/images/avatar.jpg'} alt="Profile photo" height={56} width={28} className='w-24 h-24 rounded-full object-cover border-white shadow-md' />
               
                   <input ref={fileInputRef} type='file' accept='image/*' className='hidden' onChange={handlePhotoupload} />
                 

@@ -9,7 +9,7 @@ const NavLink = ({ href, icon, children }: NavLinkProps) => {
   const isActive = pathname === href
   
   return(
-    <Link className={`flex items-center py-0 md:py-2 px-8  gap-2 text-secondary/300 ${isActive?"bg-primary rounded-lg text-black":""}`} scroll={false} href={href} >
+    <Link className={`flex items-center py-0 md:py-1 lg:py-2 md:px-2 lg:px-8  gap-2 text-secondary/300 ${isActive?"bg-primary rounded-lg text-black":""}`} scroll={false} href={href} >
     <span>
       {icon}
     </span>
