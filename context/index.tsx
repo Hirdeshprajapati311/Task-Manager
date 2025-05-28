@@ -1,6 +1,5 @@
 'use client'
 import { ProfileStoreProps, ScrollStoreProps, SidebarStoreProps } from '@/types';
-import { RefObject } from 'react';
 import { create, StateCreator } from 'zustand';
 import { persist } from 'zustand/middleware';
 
